@@ -140,7 +140,6 @@ def efetuarAluguelCarro():
     pass
 
 
-
 def efetuarDevolucaoCarro():
     # determinar cliente
     # determinar carro que está com cliente
@@ -158,7 +157,8 @@ def listarModelosCadastrados():
     if len(modelos_cadastrados) == 0:
         print("Ainda não existem modelos cadastrados")
     else:
-        for _ in modelos_cadastrados.keys():
+        for i in modelos_cadastrados.keys():
+            print(f"Modelo: {i}")
             print(modelos_cadastrados.values())
 
 

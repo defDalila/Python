@@ -24,3 +24,9 @@ def statusParaString(valor: int):
         1: "Carro Alugado"
     }
     return switch[valor]
+
+
+def formatarCpf(cpf: str) -> str:
+    if len(cpf) < 11:
+        cpf = cpf.zfill(11)
+    return f'{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}'

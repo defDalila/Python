@@ -34,3 +34,9 @@ class Carro(ModeloCarro):
     def status(self, valor):
         if valor == 1 or valor == 0:
             self.__status = valor
+
+    def __str__(self):
+        return f'Carro: {self.id_carro}\n' \
+               f'{super().__str__()}\n' \
+               f'Ano: {self.ano}\n' \
+               f'Placa: {self.placa}\n'

@@ -1,11 +1,12 @@
 from Models.Carro import Carro
+from Utils.Helpers import formatarCpf
 
 
 class Cliente:
 
     def __init__(self, nome: str, cpf: str, rg: str ):
         self.__nome: str = nome
-        self.__cpf: str = cpf
+        self.__cpf: str = formatarCpf(cpf)
         self.__rg: str = rg
         self.__alugou_carro = False
         self.__carro_alugado = None
@@ -42,3 +43,7 @@ class Cliente:
     def carro_alugado(self, carro: Carro):
         self.__carro_alugado = carro
 
+    def __str__(self):
+        return f'Nome: {self.nome}\n' \
+               f'CPF: {self.cpf}\n' \
+               f'RG: {self.rg}\n'
