@@ -115,7 +115,7 @@ def menu():
 def checarNovoCadastroDeModelo(retorno):
     while True:
 
-        numero_Modelo = -1
+        numero_modelo = -1
 
         if retorno < 0:
             break
@@ -123,14 +123,14 @@ def checarNovoCadastroDeModelo(retorno):
             opcao_usuario = input("O Modelo já está cadastrado [s/n]? ").lower()
 
             if opcao_usuario == 's':
-                numero_Modelo = int(input("Digite o número do modelo base para novo carro: "))
+                numero_modelo = int(input("Digite o número do modelo base para novo carro: "))
                 break
             elif opcao_usuario == 'n':
                 break
             else:
-                print("Opção Inválida, tente novamente.. ")
+                print("Opção Inválida, tente novamente!")
 
-    return numero_Modelo
+    return numero_modelo
 
 
 def cadastrarModelo():
@@ -146,7 +146,7 @@ def cadastrarModelo():
     novo_modelo = ModeloCarro(categoria, transmissao, combustivel, marca, modelo)
     cadastro_novo_modelo = {novo_modelo.id_modelo: novo_modelo}
     modelos_cadastrados.update(cadastro_novo_modelo)
-    print("Novo modelo cadastrado com sucesso...")
+    print("Novo modelo cadastrado com sucesso!")
     sleep(1)
 
     return novo_modelo
@@ -154,7 +154,7 @@ def cadastrarModelo():
 
 def cadastrarCarro(modelo_carro: ModeloCarro):
     print()
-    print("Inserindo os dados específicos do novo carro...")
+    print("Insira os dados específicos do novo carro")
     sleep(1)
     ano = input("Digite o Ano: ")
     placa = input("Digite a placa: ")
@@ -171,7 +171,7 @@ def cadastrarCarro(modelo_carro: ModeloCarro):
     cadastro_novo_carro = {novo_carro.id_carro: novo_carro}
     carros_cadastrados.update(cadastro_novo_carro)
     print()
-    print("Novo carro cadastrado com sucesso...")
+    print("Novo carro cadastrado com sucesso!")
     sleep(1)
 
 
@@ -231,17 +231,17 @@ def efetuarAluguelCarro():
                     nova_locacao.alugarCarro()
                     registros_locacoes.append(nova_locacao)
                     sleep(1)
-                    print("Processo de Locação Concluído...")
+                    print("Processo de Locação Concluído!")
                     print()
                     print("Dados da locação")
                     print(nova_locacao)
                     break
                 else:
-                    print("Cliente não localizado")
+                    print("Cliente não localizado!")
                     sleep(1)
             break
         else:
-            print("Carro não localizado")
+            print("Carro não localizado!")
             sleep(1)
 
 
@@ -250,9 +250,10 @@ def efetuarDevolucaoCarro():
     cpf_procurado = formatarCpf(input("Entre com o cpf do cliente: "))
     print("Localizando o registro de locação do cliente informado...")
     sleep(1)
-    for item in registros_locacoes:
-        if item.cliente.cpf == cpf_procurado:
-            locacao_index = registros_locacoes.index(item)
+    for registro in registros_locacoes:
+
+        if registro.cliente.cpf == cpf_procurado:
+            locacao_index = registros_locacoes.index(registro)
             locacao = registros_locacoes[locacao_index]
             print()
             print("Registro de Locação encontrado:")
@@ -263,19 +264,19 @@ def efetuarDevolucaoCarro():
             if opcao == 's':
                 locacao.devolverCarro()
                 registros_locacoes.pop(locacao_index)
-                print("Devolução realizada com sucesso...")
+                print("Devolução realizada com sucesso!")
                 print()
                 sleep(1)
             else:
-                print('Operação não realizada')
+                print('Operação não realizada!')
         else:
-            print("Cliente não encontrado")
+            print("Cliente não encontrado!")
 
 
 def gerarRelatorioLocacao():
     if len(registros_locacoes) == 0:
-        print("Não existem veículos alugados...")
-
+        print("Não existem veículos alugados!")
+        print()
     else:
         for item in registros_locacoes:
             print(item)
@@ -284,7 +285,7 @@ def gerarRelatorioLocacao():
 
 def listarModelosCadastrados():
     if len(modelos_cadastrados) == 0:
-        print("Ainda não existem modelos cadastrados...")
+        print("Ainda não existem modelos cadastrados!")
         sleep(1)
         return -1
     else:
@@ -297,7 +298,8 @@ def listarModelosCadastrados():
 
 def listarCarrosCadastrados():
     if len(carros_cadastrados) == 0:
-        print("Ainda não existem carros cadastrados")
+        print("Ainda não existem carros cadastrados!")
+        print()
         sleep(1)
     else:
         for i in carros_cadastrados.keys():
