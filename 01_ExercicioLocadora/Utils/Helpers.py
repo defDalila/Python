@@ -15,7 +15,7 @@ def formatarStringParaData(data: str) -> date:
 
 
 def formatarValorMonetario(valor: float) -> str:
-    return f'R$ {valor:,2f.}'
+    return f'R$ {valor:,.2f}'
 
 
 def statusParaString(valor: int):

@@ -40,4 +40,4 @@ class ModeloCarro:
                f'Tipo de transmissão: {self.transmissao}\n' \
                f'Combustível: {self.combustivel}\n' \
                f'Marca : {self.marca}\n' \
-               f'Modelo: {self.modelo}\n'
+               f'Modelo: {self.modelo}'

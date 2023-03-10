@@ -33,12 +33,13 @@ class Locacao:
         return self.__data_final
 
     def alugarCarro(self):
-        self.carro.status = 0
-        self.cliente.alugou_carro = True
+        self.carro.status = 1
+        self.cliente.alugou_carro = 1
+        self.cliente.carro_alugado = self.carro
 
     def devolverCarro(self):
-        self.carro.status = 1
-        self.cliente.alugou_carro = False
+        self.carro.status = 0
+        self.cliente.alugou_carro = 0
 
     @property
     def total_dias_aluguel(self):
@@ -52,5 +53,5 @@ class Locacao:
                f'{str(self.cliente)}\n' \
                f'Data inicial: {formatarDataParaString(self.data_inicial)}\n' \
                f'Data Devolução: {formatarDataParaString(self.data_final)}\n' \
-               f'Total de diárias: {self.__total_dias_aluguel} dias' \
-               f'Valor Total do Aluguel: {formatarValorMonetario(self.calcularValorAluguel())}\n'
+               f'Total de diárias: {self.__total_dias_aluguel} dias\n' \
+               f'Valor Total do Aluguel: {formatarValorMonetario(self.calcularValorAluguel())}'

@@ -4,11 +4,11 @@ from Utils.Helpers import formatarCpf
 
 class Cliente:
 
-    def __init__(self, nome: str, cpf: str, rg: str ):
+    def __init__(self, nome: str, cpf: str, rg: str):
         self.__nome: str = nome
         self.__cpf: str = formatarCpf(cpf)
         self.__rg: str = rg
-        self.__alugou_carro = False
+        self.__alugou_carro = 0
         self.__carro_alugado = None
 
     @property
@@ -28,12 +28,8 @@ class Cliente:
         return self.__alugou_carro
 
     @alugou_carro.setter
-    def alugou_carro(self, valor: int):
-        if valor == 0 or valor == 1:
-            self.__alugou_carro = valor
-
-        if self.alugou_carro == 0:
-            self.carro_alugado = None
+    def alugou_carro(self, valor):
+        self.__alugou_carro = valor
 
     @property
     def carro_alugado(self):
@@ -41,9 +37,20 @@ class Cliente:
 
     @carro_alugado.setter
     def carro_alugado(self, carro: Carro):
-        self.__carro_alugado = carro
+        if self.alugou_carro == 1:
+            self.__carro_alugado = carro
+        elif self.alugou_carro == 0:
+            self.__carro_alugado = None
 
     def __str__(self):
-        return f'Nome: {self.nome}\n' \
-               f'CPF: {self.cpf}\n' \
-               f'RG: {self.rg}\n'
+
+        if self.alugou_carro == 0:
+            return f'Nome: {self.nome}\n' \
+                   f'CPF: {self.cpf}\n' \
+                   f'RG: {self.rg}\n' \
+                   f'Sem carro alugado em seu registro'
+        elif self.alugou_carro == 1:
+            return f'Nome: {self.nome}\n' \
+                   f'CPF: {self.cpf}\n' \
+                   f'RG: {self.rg}\n' \
+                   f'Carro alugado em seu registro: {self.carro_alugado.id_carro}'
