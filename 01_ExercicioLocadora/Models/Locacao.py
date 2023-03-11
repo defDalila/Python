@@ -58,3 +58,4 @@ class Locacao:
                f'Data Devolução: {formatarDataParaString(self.data_final)}\n' \
                f'Total de diárias: {self.__total_dias_aluguel} dias\n' \
                f'Valor Total do Aluguel: {formatarValorMonetario(self.calcularValorAluguel())}'
+

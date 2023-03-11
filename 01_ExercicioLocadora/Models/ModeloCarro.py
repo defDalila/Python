@@ -41,3 +41,4 @@ class ModeloCarro:
                f'Combustível: {self.combustivel}\t' \
                f'Marca : {self.marca}\t' \
                f'Modelo: {self.modelo}'
+

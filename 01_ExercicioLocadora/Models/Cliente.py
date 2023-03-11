@@ -54,3 +54,4 @@ class Cliente:
                    f'CPF: {self.cpf}\n' \
                    f'RG: {self.rg}\n' \
                    f'ID do carro alugado: {str(self.carro_alugado.id_carro).zfill(3)}'
+
