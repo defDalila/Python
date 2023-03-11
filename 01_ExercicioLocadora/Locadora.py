@@ -184,8 +184,8 @@ def cadastrarModelo():
     print("")
     print("Insira os dados do novo modelo:")
     categoria = input("Categoria: ").title()
-    transmissao = input("Transmissao: ").title()
-    combustivel = input("Combustivel: ").title()
+    transmissao = input("Transmissão: ").title()
+    combustivel = input("Combustível: ").title()
     marca = input("Marca: ").title()
     modelo = input("Modelo: ").title()
     print("")
@@ -197,7 +197,6 @@ def cadastrarModelo():
     print("")
     sleep(1)
     return novo_modelo
-
 
 
 def cadastrarCliente():
@@ -221,17 +220,14 @@ def cadastrarCliente():
 
 
 def checarExistenciaCliente():
-    print("Entre com od dados do cliente: ")
+    print("Entre com os dados do cliente: ")
     cpf_procurado = input("CPF (somente números): ")
-    print("")
     cliente_encontrado = buscarClientePorCpf(formatarCpf(cpf_procurado))
 
     if cliente_encontrado:
         return "-1"
     else:
         return cpf_procurado
-
-
 
 
 def efetuarAluguelCarro():
