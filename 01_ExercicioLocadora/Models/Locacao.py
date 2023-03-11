@@ -51,7 +51,7 @@ class Locacao:
     def __str__(self):
         return f'{str(self.carro)}\n' \
                f'{str(self.cliente)}\n' \
-               f'Data inicial: {formatarDataParaString(self.data_inicial)}\n' \
+               f'Data inicial: {formatarDataParaString(self.data_inicial)}\t' \
                f'Data Devolução: {formatarDataParaString(self.data_final)}\n' \
-               f'Total de diárias: {self.__total_dias_aluguel} dias\n' \
+               f'Total de diárias: {self.__total_dias_aluguel} dias\t' \
                f'Valor Total do Aluguel: {formatarValorMonetario(self.calcularValorAluguel())}'

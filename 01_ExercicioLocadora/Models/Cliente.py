@@ -45,12 +45,12 @@ class Cliente:
     def __str__(self):
 
         if self.alugou_carro == 0:
-            return f'Nome: {self.nome}\n' \
-                   f'CPF: {self.cpf}\n' \
+            return f'CPF: {self.cpf}\n' \
+                   f'Nome: {self.nome}\t' \
                    f'RG: {self.rg}\n' \
                    f'Sem carro alugado em seu registro'
         elif self.alugou_carro == 1:
-            return f'Nome: {self.nome}\n' \
-                   f'CPF: {self.cpf}\n' \
+            return f'CPF: {self.cpf}\n' \
+                   f'Nome: {self.nome}\t' \
                    f'RG: {self.rg}\n' \
                    f'Carro alugado em seu registro: {self.carro_alugado.id_carro}'

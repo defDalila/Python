@@ -13,6 +13,7 @@ clientes_cadastrados: Dict[str, Cliente] = {}
 
 carros_cadastrados: Dict[int, Carro] = {}
 registros_locacoes: List[Locacao] = []
+contador_modelo = 1
 
 
 def main():
@@ -23,7 +24,6 @@ def menu():
     while True:
         print("---------------- Locadora de Veículos LoCar ----------------")
         print()
-        print("Escolha uma das opções abaixo:")
         print("[1] Cadastrar um novo veículo")
         print("[2] Cadastrar um novo cliente")
         print("[3] Realizar a locação de um veículo")
@@ -34,7 +34,7 @@ def menu():
         print("[8] Listar modelos cadastrados")
         print("[0] Encerrar a sessão")
 
-        opcao_usuario = int(input("\nOpção desejada: "))
+        opcao_usuario = int(input("\nEntre com a opção desejada: "))
 
         if opcao_usuario == 0:
             print("Encerrando sessão...")
@@ -49,6 +49,7 @@ def menu():
             opcao_modelo = checarNovoCadastroDeModelo(retorno)
 
             if opcao_modelo == -1:
+                print("Antes de cadastrar um novo veículo é necessário cadastrar seu modelo!")
                 modelo = cadastrarModelo()
                 cadastrarCarro(modelo)
             else:
@@ -56,6 +57,7 @@ def menu():
                 cadastrarCarro(modelo)
             print("Retornando ao menu principal...")
             sleep(1)
+
         elif opcao_usuario == 2:
             print("Cadastrar um novo Cliente")
             print()
@@ -67,18 +69,21 @@ def menu():
                 cadastrarCliente(cpf_cliente_existente)
             print("Retornando ao menu principal...")
             sleep(1)
+
         elif opcao_usuario == 3:
             print("Realizar a locação de um veículo")
             print()
             efetuarAluguelCarro()
             print("Retornando ao menu principal...")
             sleep(1)
+
         elif opcao_usuario == 4:
             print("Devolver um veículo Alugado")
             print()
             efetuarDevolucaoCarro()
             print("Retornando ao menu principal...")
             sleep(1)
+
         elif opcao_usuario == 5:
             print("Relatório de Locação de veículos")
             print()
@@ -112,25 +117,36 @@ def menu():
             sleep(1)
 
 
+def listarModelosCadastrados():
+    if len(modelos_cadastrados) == 0:
+        print("Ainda não existem modelos cadastrados!")
+        sleep(1)
+        return -1
+    else:
+        for i in modelos_cadastrados.keys():
+            print(f"Modelo: {i}")
+            print(modelos_cadastrados[i])
+            print()
+        return 1
+
+
 def checarNovoCadastroDeModelo(retorno):
     while True:
-
-        numero_Modelo = -1
-
+        numero_modelo = -1
         if retorno < 0:
             break
         else:
             opcao_usuario = input("O Modelo já está cadastrado [s/n]? ").lower()
 
             if opcao_usuario == 's':
-                numero_Modelo = int(input("Digite o número do modelo base para novo carro: "))
+                numero_modelo = int(input("Digite o número do modelo base para novo carro: "))
                 break
             elif opcao_usuario == 'n':
                 break
             else:
                 print("Opção Inválida, tente novamente! ")
 
-    return numero_Modelo
+    return numero_modelo
 
 
 def cadastrarModelo():
@@ -216,7 +232,7 @@ def efetuarAluguelCarro():
                 print()
                 print("Listando os clientes cadastrados...")
                 sleep(1)
-                listarClientesCadastrados()
+                listarClientesDisponiveis()
                 print()
                 cpf_cliente = formatarCpf(input("Digite o cpf do cliente que irá locar o veículo:"))
                 cliente_encontrado = clientes_cadastrados.get(cpf_cliente)
@@ -246,7 +262,6 @@ def efetuarAluguelCarro():
 
 
 def efetuarDevolucaoCarro():
-    # Procurar cliente no registro de locações
     cpf_procurado = formatarCpf(input("Digite o cpf do locador: "))
     index_registro = -1
 
@@ -280,19 +295,6 @@ def gerarRelatorioLocacao():
             print()
 
 
-def listarModelosCadastrados():
-    if len(modelos_cadastrados) == 0:
-        print("Ainda não existem modelos cadastrados!")
-        sleep(1)
-        return -1
-    else:
-        for i in modelos_cadastrados.keys():
-            print(f"Modelo: {i}")
-            print(modelos_cadastrados[i])
-            print()
-        return 1
-
-
 def listarCarrosCadastrados():
     if len(carros_cadastrados) == 0:
         print("Ainda não existem carros cadastrados!")
@@ -318,6 +320,17 @@ def listarCarrosdisponiveis():
         if carros_cadastrados[carro].status == 0:
             print(carros_cadastrados[carro])
             print()
+
+
+def listarClientesDisponiveis():
+    if len(clientes_cadastrados) == 0:
+        print("Ainda não existem clientes cadastrados!")
+        sleep(1)
+    else:
+        for i in clientes_cadastrados.keys():
+            if clientes_cadastrados[i].alugou_carro == 0:
+                print(clientes_cadastrados[i])
+                print()
 
 
 def buscarModeloPorNumero(numero_procurado: int):
