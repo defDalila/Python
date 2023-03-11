@@ -49,8 +49,11 @@ class Locacao:
         return Locacao.valor_por_dia * self.__total_dias_aluguel
 
     def __str__(self):
-        return f'{str(self.carro)}\n' \
-               f'{str(self.cliente)}\n' \
+        return f'Dados do Veículo:\n' \
+               f'{str(self.carro)}\n\n' \
+               f'Dados do Cliente:\n' \
+               f'{str(self.cliente)}\n\n' \
+               f'Dados da locação:\n' \
                f'Data inicial: {formatarDataParaString(self.data_inicial)}\n' \
                f'Data Devolução: {formatarDataParaString(self.data_final)}\n' \
                f'Total de diárias: {self.__total_dias_aluguel} dias\n' \

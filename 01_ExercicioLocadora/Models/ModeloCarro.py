@@ -36,8 +36,8 @@ class ModeloCarro:
         return self.__modelo
 
     def __str__(self):
-        return f'Categoria: {self.categoria}\n' \
-               f'Tipo de transmissão: {self.transmissao}\n' \
-               f'Combustível: {self.combustivel}\n' \
-               f'Marca : {self.marca}\n' \
+        return f'Categoria: {self.categoria}\t' \
+               f'Transmissão: {self.transmissao}\t\t' \
+               f'Combustível: {self.combustivel}\t' \
+               f'Marca : {self.marca}\t' \
                f'Modelo: {self.modelo}'
