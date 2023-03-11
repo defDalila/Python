@@ -126,26 +126,6 @@ def menu():
             sleep(1)
 
 
-def cadastrarModelo():
-    print("---- Cadastrar Modelo ----")
-    print("")
-    print("Insira os dados do novo modelo:")
-    categoria = input("Categoria: ").title()
-    transmissao = input("Transmissao: ").title()
-    combustivel = input("Combustivel: ").title()
-    marca = input("Marca: ").title()
-    modelo = input("Modelo: ").title()
-    print("")
-
-    novo_modelo = ModeloCarro(categoria, transmissao, combustivel, marca, modelo)
-    cadastro_novo_modelo = {novo_modelo.id_modelo: novo_modelo}
-    modelos_cadastrados.update(cadastro_novo_modelo)
-    print("Modelo cadastrado!")
-    print("")
-    sleep(1)
-    return novo_modelo
-
-
 def cadastrarCarro():
     retorno = listarModelosCadastrados()
     opcao_modelo = checarNovoCadastroDeModelo(retorno)
@@ -178,21 +158,6 @@ def cadastrarCarro():
     sleep(1)
 
 
-def listarModelosCadastrados():
-    if len(modelos_cadastrados) == 0:
-        print("Ainda não existem modelos cadastrados!")
-        print("")
-        sleep(1)
-        return -1
-    else:
-        for i in modelos_cadastrados.keys():
-            print(f"Modelo: {str(i).zfill(2)}")
-            print(modelos_cadastrados[i])
-            print("----")
-            sleep(1)
-        return 1
-
-
 def checarNovoCadastroDeModelo(retorno):
     while True:
         numero_modelo = -1
@@ -214,16 +179,25 @@ def checarNovoCadastroDeModelo(retorno):
     return numero_modelo
 
 
-def checarExistenciaCliente():
-    print("Entre com od dados do cliente: ")
-    cpf_procurado = input("CPF (somente números): ")
+def cadastrarModelo():
+    print("---- Cadastrar Modelo ----")
     print("")
-    cliente_encontrado = buscarClientePorCpf(formatarCpf(cpf_procurado))
+    print("Insira os dados do novo modelo:")
+    categoria = input("Categoria: ").title()
+    transmissao = input("Transmissao: ").title()
+    combustivel = input("Combustivel: ").title()
+    marca = input("Marca: ").title()
+    modelo = input("Modelo: ").title()
+    print("")
 
-    if cliente_encontrado:
-        return "-1"
-    else:
-        return cpf_procurado
+    novo_modelo = ModeloCarro(categoria, transmissao, combustivel, marca, modelo)
+    cadastro_novo_modelo = {novo_modelo.id_modelo: novo_modelo}
+    modelos_cadastrados.update(cadastro_novo_modelo)
+    print("Modelo cadastrado!")
+    print("")
+    sleep(1)
+    return novo_modelo
+
 
 
 def cadastrarCliente():
@@ -244,6 +218,20 @@ def cadastrarCliente():
         print("Cliente cadastrado com sucesso!")
         print("")
         sleep(1)
+
+
+def checarExistenciaCliente():
+    print("Entre com od dados do cliente: ")
+    cpf_procurado = input("CPF (somente números): ")
+    print("")
+    cliente_encontrado = buscarClientePorCpf(formatarCpf(cpf_procurado))
+
+    if cliente_encontrado:
+        return "-1"
+    else:
+        return cpf_procurado
+
+
 
 
 def efetuarAluguelCarro():
@@ -366,6 +354,21 @@ def listarClientesCadastrados():
             print(clientes_cadastrados[i])
             print("----")
             sleep(1)
+
+
+def listarModelosCadastrados():
+    if len(modelos_cadastrados) == 0:
+        print("Ainda não existem modelos cadastrados!")
+        print("")
+        sleep(1)
+        return -1
+    else:
+        for i in modelos_cadastrados.keys():
+            print(f"Modelo: {str(i).zfill(2)}")
+            print(modelos_cadastrados[i])
+            print("----")
+            sleep(1)
+        return 1
 
 
 def listarCarrosdisponiveis():
