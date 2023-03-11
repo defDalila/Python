@@ -36,8 +36,8 @@ class Carro(ModeloCarro):
         self.__status = valor
 
     def __str__(self):
-        return f'Status: {statusParaString(self.status)}\n' \
-               f'ID Carro: {str(self.id_carro).zfill(3)}\n' \
-               f'{super().__str__()}\n' \
-               f'Ano: {self.ano}\t' \
+        return f'ID Carro: {str(self.id_carro).zfill(3)}\n' \
+               f'Status: {statusParaString(self.status)}\n' \
+               f'Dados do carro: {self.marca} {self.modelo}, {self.categoria}, {self.transmissao}, {self.combustivel}\n' \
+               f'Ano: {self.ano}\n' \
                f'Placa: {self.placa}'
